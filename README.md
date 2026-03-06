@@ -1,5 +1,7 @@
 # CogGeometry Studio
 
+https://coggeometry-studio.vercel.app/
+
 **An interactive platform for discovering topology, geometry, and dynamics in cognitive state spaces.**
 
 CogGeometry Studio is a computational prototype of the Geometric Cognition Programme — a research agenda proposing that cognition is best understood as structured dynamics on latent state spaces, characterised by their topology, geometry, and dynamical flow.
