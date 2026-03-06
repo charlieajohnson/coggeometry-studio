@@ -174,8 +174,6 @@ function generateClaimReport(manifoldType, bars) {
     claims.push({ text: "Local dimension variation confirmed", status: "confirmed", confidence: 0.82 });
   }
 
-  claims.push({ text: "Dynamical chirality: unresolved", status: "unresolved", confidence: 0.4 + Math.random() * 0.2 });
-
   return claims;
 }
 
