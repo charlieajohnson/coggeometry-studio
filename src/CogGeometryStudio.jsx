@@ -1007,7 +1007,7 @@ export default function CogGeometryStudio() {
                 Strongest Defensible Claim
               </div>
               <div style={{ fontSize: 12, color: "#c0d0e8", fontFamily: "'DM Sans', sans-serif", lineHeight: 1.5 }}>
-                {manifold === "torus" && "Toroidal latent manifold with two persistent 1-cycles. Orientable. Dynamics uncharacterized."}
+                {manifold === "torus" && "Toroidal latent manifold with two persistent 1-cycles. Orientable."}
                 {manifold === "circle" && "Circular manifold (S¹) with one persistent 1-cycle. Consistent with ring attractor dynamics."}
                 {manifold === "klein" && "Non-orientable surface candidate. Z₂/Z₃ coefficient divergence detected. Requires further investigation."}
                 {manifold === "sphere" && "Closed orientable surface (S²) with persistent 2-cycle. No 1-cycles. Spherical topology supported."}
