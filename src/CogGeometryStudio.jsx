@@ -696,12 +696,12 @@ function CouplingAnalyzer() {
   const requestAiInsight = async () => {
     setAiLoading(true);
     try {
-      const resp = await fetch("https://api.anthropic.com/v1/messages", { method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ model: "claude-sonnet-4-20250514", max_tokens: 1000, system: "You are a geometric topology expert analyzing coupling between dynamical systems. Provide a concise scientific interpretation (3-4 sentences). Focus on Künneth deviation, fiber coherence, and coupling claim level. Use fiber bundle and persistent homology language. No bullet points.", messages: [{ role: "user", content: `Analysis for "${COUPLING_FAMILIES[activeFamily]?.label}":\n- Künneth Δ = [${claimState?.kunneth?.delta?.join(", ")}]\n- Observed β: (${claimState?.kunneth?.observed?.join(", ")}) vs predicted (${claimState?.kunneth?.predicted?.join(", ")})\n- Fiber coherence Γ = ${claimState?.fiberCoherence?.toFixed(3)}\n- Holonomy: ${claimState?.holonomyNonTrivial}\n- Chirality α_χ = ${claimState?.chiralityAlignment?.toFixed(3)}\n- Claim level: ${claimState?.claimLevel}/5\n- n=${sampleSize}, σ=${noiseLevel}\n\nGeometric coupling interpretation?` }] }),
+      const resp = await fetch("/api/analyze", { method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ system: "You are a geometric topology expert analyzing coupling between dynamical systems. Provide a concise scientific interpretation (3-4 sentences). Focus on Künneth deviation, fiber coherence, and coupling claim level. Use fiber bundle and persistent homology language. No bullet points.", prompt: `Analysis for "${COUPLING_FAMILIES[activeFamily]?.label}":\n- Künneth Δ = [${claimState?.kunneth?.delta?.join(", ")}]\n- Observed β: (${claimState?.kunneth?.observed?.join(", ")}) vs predicted (${claimState?.kunneth?.predicted?.join(", ")})\n- Fiber coherence Γ = ${claimState?.fiberCoherence?.toFixed(3)}\n- Holonomy: ${claimState?.holonomyNonTrivial}\n- Chirality α_χ = ${claimState?.chiralityAlignment?.toFixed(3)}\n- Claim level: ${claimState?.claimLevel}/5\n- n=${sampleSize}, σ=${noiseLevel}\n\nGeometric coupling interpretation?` }),
       });
       const result = await resp.json();
-      setAiInsight(result.content?.map(c => c.text || "").join("\n") || "Analysis unavailable.");
-    } catch { setAiInsight("AI analysis unavailable — connect to the Anthropic API to enable geometric interpretation."); }
+      setAiInsight(result.insight || "Analysis unavailable.");
+    } catch { setAiInsight("AI analysis unavailable — check server configuration."); }
     setAiLoading(false);
   };
 
